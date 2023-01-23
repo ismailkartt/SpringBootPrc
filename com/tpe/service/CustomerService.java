@@ -56,9 +56,9 @@ public class CustomerService {
     public void updateCustomerById(Long id, CustomerDTO customerDTO) {
         Customer customer=getCustomerById(id);
         //email var mı
-        boolean isExistsEmail=customerRepository.existsByEmail(customerDTO.getEmail());
-        if(isExistsEmail && !customerDTO.getEmail().equals(customer.getEmail())){
-            throw new ConflictException("Email is already in use: "+customerDTO.getEmail());
+        boolean isExistsEmail=customerRepository.existsByEmail(customerDTO.getEmail()); // bu veri database'de var
+        if(isExistsEmail && !customerDTO.getEmail().equals(customer.getEmail())){ // id yi bulup geçmişte kayıt oldugumuz sayfaya gidiyoruz.
+            throw new ConflictException("Email is already in use: "+customerDTO.getEmail()); // Kimin bu veri ? öğrenmek için bu kodu yazıyoruz.
         }
         customer.setName(customerDTO.getName());
         customer.setLastName(customerDTO.getLastName());
