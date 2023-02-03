@@ -19,5 +19,9 @@ public interface CustomerRepository extends JpaRepository<Customer,Long> {
 
     @Query("SELECT c FROM Customer c WHERE lower(c.name) LIKE %:pName%")
     List<Customer> findAllByNameLike(@Param("pName") String name);//ja
+
+    @Query("Select c From Customer c Where lower(c.name,c.lastName) LIKE %:pName%")
+    List<Customer> findAllByNameAndLastNameLike(@Param("pName") String lowerName,@Param("pName") String lowerLastName);
+
 }
 

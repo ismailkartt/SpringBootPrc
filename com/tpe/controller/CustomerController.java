@@ -105,7 +105,12 @@ public class CustomerController {
 
     //ÖDEV:Requestle gelen "kelime" name veya lastname inde geçen customerları döndür.
     //http://localhost:8080/customers/search?word=pa
-
+    @GetMapping("/search")
+    public ResponseEntity<List<Customer>> CustomerSearch(@RequestParam("name") String name,
+                                                         @RequestParam("lastName") String lastName){
+        List<Customer> customers = customerService.CustomerSearch(name,lastName);
+        return ResponseEntity.ok(customers);
+    }
 
 
 
